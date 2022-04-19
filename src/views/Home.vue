@@ -1,18 +1,42 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <div class="wrap_count">
+      <button
+        @click="counter.plusCount"
+      >
+        plus
+      </button>
+      <p class="counter">
+        {{counter.count}}
+      </p>
+      <button
+        @click="counter.minusCount"
+      >
+        minus
+      </button>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+<script setup lang="ts">
+import useCounterStore from '../store/counter';
 
-export default defineComponent({
-  name: 'Home',
-  components: {
-    HelloWorld,
-  },
-});
+const counter = useCounterStore();
 </script>
+
+<style scoped lang="scss">
+  .wrap_count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    > button {
+      width: 100px;
+      height: 30px;
+      font-size: 20px;
+    }
+  }
+
+</style>
